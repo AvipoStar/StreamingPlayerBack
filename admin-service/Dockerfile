@@ -4,10 +4,17 @@ FROM python:3.9-slim
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
+# Устанавливаем необходимые инструменты для компиляции
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    libmysqlclient-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
 # Копируем зависимости
 COPY requirements.txt .
-
-RUN pip install --upgrade pip
 
 # Устанавливаем зависимости
 RUN pip install --no-cache-dir -r requirements.txt
