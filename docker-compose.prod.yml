@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  authorization:
+    build: ./authorization-service
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env.prod
+    depends_on:
+      - db
+
+  music-streaming:
+    build: ./music-streaming-service
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env.prod
+    depends_on:
+      - db
+
+  admin:
+    build: ./admin-service
+    ports:
+      - "8002:8002"
+    env_file:
+      - .env.prod
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: MySQL_Password01!
+      MYSQL_DATABASE: test
+      MYSQL_USER: root
+      MYSQL_PASSWORD: MySQL_Password01!
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
