@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   authorization:
-    build: ./authorization-service
+    build: ./auth-service
     ports:
       - "8000:8000"
     env_file:
