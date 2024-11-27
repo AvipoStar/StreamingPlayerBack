@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from controllers.login import getUserDetails
+from controllers.userData import getUserDetails
 
 router = APIRouter()
 

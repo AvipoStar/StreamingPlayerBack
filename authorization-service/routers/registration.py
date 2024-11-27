@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from controllers.login import register_user
+from controllers.registration import register_user
 from models.registration import RegistrationClass
 
 router = APIRouter()
