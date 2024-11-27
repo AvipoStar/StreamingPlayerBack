@@ -3,7 +3,6 @@ from fastapi.responses import StreamingResponse
 import os
 
 from starlette.middleware.cors import CORSMiddleware
-from routers.auth import router as auth_router
 from routers.player import router as player_router
 
 app = FastAPI()
@@ -17,11 +16,6 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],  # Разрешаем все HTTP методы
     allow_headers=["*"],  # Разрешаем все заголовки
-)
-
-app.include_router(
-    router=auth_router,
-    prefix='/auth'
 )
 
 app.include_router(
