@@ -13,6 +13,14 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
+
+# Создаем виртуальное окружение
+RUN python -m venv /app/venv
+
+# Активируем виртуальное окружение
+ENV PATH="/app/venv/bin:$PATH"
+
+
 # Копируем зависимости
 COPY requirements.txt .
 
