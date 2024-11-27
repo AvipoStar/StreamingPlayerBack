@@ -5,13 +5,16 @@ from sshtunnel import SSHTunnelForwarder
 def getConnection():
     mode = os.getenv('MODE', 'prod')
     if mode == 'dev':
-       
-        remote_bind_address = ('localhost', 33060)
+        # SSH-туннель для режима разработки
+        ssh_host = os.getenv('SSH_HOST')
+        ssh_user = os.getenv('SSH_USER')
+        ssh_password = os.getenv('SSH_PASSWORD')
+        remote_bind_address = ('localhost', 3306)
 
         with SSHTunnelForwarder(
-            ('79.104.192.137', 2222),
-            ssh_username='jane',
-            ssh_password='1251',
+            (ssh_host, 22),
+            ssh_username=ssh_user,
+            ssh_password=ssh_password,
             remote_bind_address=remote_bind_address
         ) as tunnel:
             db = mysql.connector.connect(
