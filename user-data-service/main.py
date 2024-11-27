@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from routers.playlist import router as playlist_router
 from routers.favorites import router as favorites_router
+from routers.userSettings import router as userSettings_router
 
 
 app = FastAPI()
@@ -24,4 +25,9 @@ app.include_router(
 app.include_router(
     router=favorites_router,
     prefix='/favorites'
+)
+
+app.include_router(
+    router=userSettings_router,
+    prefix='/userSettings'
 )
