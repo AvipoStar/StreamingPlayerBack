@@ -1,0 +1,54 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Aggregated API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/authorization": {
+      "get": {
+        "summary": "Authorization Service",
+        "description": "API documentation for the Authorization Service",
+        "operationId": "getAuthorization",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/music-streaming": {
+      "get": {
+        "summary": "Music Streaming Service",
+        "description": "API documentation for the Music Streaming Service",
+        "operationId": "getMusicStreaming",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/admin": {
+      "get": {
+        "summary": "Admin Service",
+        "description": "API documentation for the Admin Service",
+        "operationId": "getAdmin",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

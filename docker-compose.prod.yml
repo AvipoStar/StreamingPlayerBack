@@ -4,7 +4,7 @@ services:
   authorization:
     build: ./authorisation-service
     ports:
-      - "8000:8000"
+      - "8001:8000"
     env_file:
       - .env.prod
     depends_on:
@@ -13,7 +13,7 @@ services:
   music-streaming:
     build: ./music-streaming-service
     ports:
-      - "8001:8001"
+      - "8002:8000"
     env_file:
       - .env.prod
     depends_on:
@@ -22,7 +22,7 @@ services:
   admin:
     build: ./admin-service
     ports:
-      - "8002:8002"
+      - "8003:8000"
     env_file:
       - .env.prod
     depends_on:
@@ -35,6 +35,27 @@ services:
       MYSQL_DATABASE: test
     volumes:
       - mysql_data:/var/lib/mysql
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8080:8080"
+    environment:
+      SWAGGER_URL: /swagger-config.json
+    volumes:
+      - ./swagger-config.json:/swagger-config.json
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - authorization
+      - music-streaming
+      - admin
+      - swagger-ui
 
 volumes:
   mysql_data:
